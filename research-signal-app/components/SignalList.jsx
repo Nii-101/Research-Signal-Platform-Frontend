@@ -1,8 +1,9 @@
-import { FilterIcon } from "lucide-react";
+import { FilterIcon} from "lucide-react";
 import { Toggle } from "./ui/toggle";
 import { Card } from "./ui/card";
 import SignalCard from "./SignalCard";
 import { useEffect, useState } from "react";
+import Loader from "./loader";
 
 const MOCK_API_DELAY = 1000;
 
@@ -39,7 +40,7 @@ const mockSignals = [
   },
   {
     ticker: "ITACHI",
-    strategy: "HIDDEN LEAF",
+    strategy: "Hidden Leaf",
     vrpZScore: 1.95,
     vrpRatio: 1.18,
     expectedReturn: 10.2,
@@ -74,11 +75,18 @@ const SignalList = () => {
     fetchSignals();
   }, []);
 
+  if (loading) {
+    return(
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader/>
+      </div>
+    );  
+  }
 
   return ( 
-    <div className="space-y-5 lg:space-y-12 px-4 py-4 lg:px-8">
+    <div className="space-y-5 md:space-y-12 px-4 py-8 lg:px-8">
       <header className="w-full flex items-center justify-between ">
-        <h1 className="text-lg md:text-3xl lg:text-4xl font-bold md:font-bold">Research Signals</h1>
+        <h1 className="text-lg md:text-3xl font-bold md:font-bold">Research Signals</h1>
         <Toggle aria-label="" className="shadow-sm text-[0.68rem] sm:text-xs font-medium md:text-sm">
           <div className="flex gap-2 items-center">
             <FilterIcon size={14}/>
