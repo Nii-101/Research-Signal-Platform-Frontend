@@ -1,1 +1,0 @@
-# Research-Signal-Platform-Frontend
