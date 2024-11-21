@@ -7,7 +7,9 @@ export default {
     './pages/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,jsx,ts,tsx}',
     './app/**/*.{js,jsx,ts,tsx}',
+    './node_modules/@shadcn/ui/dist/**/*.{js,ts,jsx,tsx}',
   ],
+  
   prefix: "",
   theme: {
     container: {
