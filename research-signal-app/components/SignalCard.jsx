@@ -26,16 +26,35 @@ const SignalCard = ({ signal }) => {
   return (
     <Card
       style={{ border: "2px solid #cedff5" }}
-      className="flex flex-col bg-inherit shadow-sm rounded-xl px-2 md:px-6 py-6 md:py-8 space-y-6 md:space-y-7"
+      className="flex h-fit flex-col bg-inherit shadow-sm rounded-xl px-2 md:px-6 py-6 md:py-8 space-y-6 md:space-y-7"
     >
 
 
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h2 className="text-lg md:text-xl font-bold">{signal.ticker}</h2>
-          <span className="text-xs md:text-sm bg-[#d8e6f4] font-bold px-2 py-1 rounded-[3px]">
-            {signal.strategy}
-          </span>
+        <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <h2 className="text-lg md:text-xl font-[750] cursor-help">{signal.ticker}</h2>
+              </TooltipTrigger>
+              <TooltipContent className="bg-gray-800 px-4 py-2 tracking-wider ring-1 ring-white rounded-[2px] text-sm font-medium text-white shadow-md">
+                <p className="m-0">Ticker</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="text-xs md:text-sm bg-[#d8e6f4] font-bold px-2 py-1 rounded-[3px] cursor-help">
+                  {signal.strategy}
+                </span>
+              </TooltipTrigger>
+              <TooltipContent className="bg-gray-800 px-4 py-2 tracking-wider ring-1 ring-white rounded-[2px] text-sm font-medium text-white shadow-md">
+                <p className="m-0">Trading Strategy</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
         <div className="flex items-center gap-0.5 md:gap-2">
           {signal.inLab && (
@@ -52,7 +71,7 @@ const SignalCard = ({ signal }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-1 max-md:overflow-x-scroll md:gap-3">
+      <div className="grid grid-cols-4 gap-1  md:gap-3">
         <Card className="p-1 py-3 text-center bg-[#dcebf9] rounded-lg">
           <p className="text-xs text-gray-500">VRP Z-Score</p>
           <p className="md:text-xl font-bold text-gray-900">
@@ -82,20 +101,19 @@ const SignalCard = ({ signal }) => {
         </Card>
       </div>
 
-      {/* Footer */}
       <div className="flex items-center justify-between">
         {userAction ? (
           <div 
             className={`
-              ${userAction === 'Taken' ? 'text-green-700' : 
+              ${userAction === 'Taken' ? 'text-[#219560]' : 
                 userAction === 'Watching' ? 'text-yellow-600' : 'text-red-600'} 
-              border px-2 font-semibold rounded-[6px] border-[#cedff5]
+              border px-3 font-semibold rounded-[6px] border-[#cedff5]
             `}
           >
             {userAction}
           </div>
         ) : (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 md:gap-6">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -103,7 +121,7 @@ const SignalCard = ({ signal }) => {
                     <Check className="size-4 md:size-6 hover:text-green-600" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent className="bg-emerald-800 px-4 tracking-wider ring-1 ring-white rounded-[2px] text-sm font-medium text-white shadow-md">
+              <TooltipContent className="bg-[#219560] px-4 py-2 tracking-wider ring-1 ring-white rounded-[2px] text-sm font-medium text-white shadow-md">
                   <p className="m-0">Take</p>
                 </TooltipContent>
               </Tooltip>
@@ -115,7 +133,7 @@ const SignalCard = ({ signal }) => {
                     <Eye className="size-4 md:size-6 hover:text-blue-500" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent className="bg-blue-700/80 px-4 tracking-wider ring-1 ring-white rounded-[2px] text-sm font-medium text-white shadow-md">
+                <TooltipContent className="bg-blue-700/80 px-4 tracking-wider  py-2 ring-1 ring-white rounded-[2px] text-sm font-medium text-white shadow-md">
                   <p className="m-0">Watch</p>
                 </TooltipContent>
               </Tooltip>
@@ -127,7 +145,7 @@ const SignalCard = ({ signal }) => {
                     <X className="size-4 md:size-6 hover:text-red-500" />
                   </button>
                 </TooltipTrigger>
-                <TooltipContent className="bg-red-700 px-4 tracking-wider ring-1 ring-white rounded-[2px] text-sm font-medium text-white shadow-md">
+                <TooltipContent className="bg-red-700 py-2 px-4 tracking-wider ring-1 ring-white rounded-[2px] text-sm font-medium text-white shadow-md">
                   <p className="m-0">Pass</p>
                 </TooltipContent>
               </Tooltip>
@@ -143,9 +161,8 @@ const SignalCard = ({ signal }) => {
           className=""
         >
           <AccordionItem value="item-1">
-            <AccordionTrigger>Analysis</AccordionTrigger>
+            <AccordionTrigger className="flex gap-2">Analysis</AccordionTrigger>
             <AccordionContent className="pt-6">
-              {/* Analysis Header Metrics */}
               <div className="grid grid-cols-3 gap-4 mb-6">
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <p className="text-xs text-gray-600 mb-1">Historical Win Rate</p>
