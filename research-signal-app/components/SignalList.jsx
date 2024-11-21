@@ -1,6 +1,5 @@
-import { FilterIcon} from "lucide-react";
+import { FilterIcon } from "lucide-react";
 import { Toggle } from "./ui/toggle";
-import { Card } from "./ui/card";
 import SignalCard from "./SignalCard";
 import { useEffect, useState } from "react";
 import Loader from "./loader";
@@ -51,12 +50,11 @@ const mockSignals = [
 ];
 
 const SignalList = () => {
-
   const [signals, setSignals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showNewOnly, setShowNewOnly] = useState(false);
-  const [selectedSignal, setSelectedSignal] = useState(null);
+  const [openSignalTicker, setOpenSignalTicker] = useState(null);
 
   useEffect(() => {
     const fetchSignals = async () => {
@@ -75,6 +73,14 @@ const SignalList = () => {
     fetchSignals();
   }, []);
 
+  const displayedSignals = showNewOnly 
+    ? signals.filter(signal => signal.isNew)
+    : signals;
+
+  const handleToggleOpen = (ticker) => (isOpen) => {
+    setOpenSignalTicker(isOpen ? ticker : null);
+  };
+
   if (loading) {
     return(
       <div className="min-h-screen flex items-center justify-center">
@@ -87,7 +93,13 @@ const SignalList = () => {
     <div className="space-y-5 md:space-y-12 px-4 py-8 lg:px-8">
       <header className="w-full flex items-center justify-between ">
         <h1 className="text-lg md:text-3xl font-bold md:font-bold">Research Signals</h1>
-        <Toggle aria-label="" className="shadow-sm text-[0.68rem] sm:text-xs font-medium md:text-sm">
+        <Toggle 
+          style={{ border: "2px solid #cedff5", borderRadius: "6px" }} 
+          pressed={showNewOnly}
+          onPressedChange={setShowNewOnly}
+          aria-label="Show New Signals" 
+          className="shadow-sm text-[0.68rem] sm:text-xs font-medium md:text-sm"
+        >
           <div className="flex gap-2 items-center">
             <FilterIcon size={14}/>
             <p>Show New Only</p>
@@ -95,9 +107,14 @@ const SignalList = () => {
         </Toggle>
       </header>
 
-      <main className="w-full max-lg:space-y-3 lg:grid gap-6 grid-cols-2 grid-rows-auto ">
-        {signals.map((signal) => (
-          <SignalCard key={signal.ticker} signal={signal} 
+      <main className="w-full max-lg:space-y-3 lg:grid gap-6 grid-cols-2 grid-rows-auto">
+        {displayedSignals.map((signal) => (
+          <SignalCard 
+            key={signal.ticker} 
+            signal={signal}
+            isOpen={openSignalTicker === signal.ticker}
+            onToggleOpen={handleToggleOpen(signal.ticker)}
+            className="h-auto" 
           />
         ))}
       </main> 
