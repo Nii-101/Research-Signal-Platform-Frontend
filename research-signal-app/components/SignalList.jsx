@@ -95,7 +95,7 @@ const SignalList = () => {
         </Toggle>
       </header>
 
-      <main className="w-full max-lg:space-y-3 lg:grid gap-6 grid-cols-2 ">
+      <main className="w-full max-lg:space-y-3 lg:grid gap-6 grid-cols-2 grid-rows-auto ">
         {signals.map((signal) => (
           <SignalCard key={signal.ticker} signal={signal} 
           />

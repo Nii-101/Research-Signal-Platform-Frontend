@@ -1,4 +1,4 @@
-import { Check, Eye, TestTube, Watch, X } from "lucide-react";
+import { Check, ExternalLink, Eye, TestTube, X } from "lucide-react";
 import { Card } from "./ui/card";
 import { Accordion, AccordionItem } from "./ui/accordion";
 import { AccordionContent, AccordionTrigger } from "@radix-ui/react-accordion";
@@ -8,6 +8,8 @@ import {
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
 import { Tooltip } from "./ui/tooltip";
+import { Button } from "./ui/button";
+import SignalChart from "./SignalChart";
 
 const SignalCard = ({ signal }) => {
   return (
@@ -111,11 +113,38 @@ const SignalCard = ({ signal }) => {
         </div>
 
           <Accordion type="single" collapsible className="">
-            <AccordionItem value="item-1">
+            <AccordionItem value="item">
               <AccordionTrigger>Analysis</AccordionTrigger>
-              <AccordionContent>
-                Analysis Content
-              </AccordionContent>
+              <AccordionContent className="pt-6">
+              {/* Analysis Header Metrics */}
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <p className="text-xs text-gray-600 mb-1">Historical Win Rate</p>
+                  <p className="font-bold text-gray-900">76%</p>
+                </div>
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <p className="text-xs text-gray-600 mb-1">Avg. Hold Time</p>
+                  <p className="font-bold text-gray-900">14.3 days</p>
+                </div>
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <p className="text-xs text-gray-600 mb-1">Risk Score</p>
+                  <p className="font-bold text-gray-900">Medium</p>
+                </div>
+              </div>
+
+              <SignalChart/>
+
+              <div className="border-t pt-4">
+                <Button
+                  variant="outline"
+                  className="w-full justify-between text-blue-600 hover:text-blue-700"
+                  onClick={() => window.open('#', '_blank')}
+                >
+                  <span>View Complete Analysis</span>
+                  <ExternalLink className="h-4 w-4 ml-2" />
+                </Button>
+              </div>
+            </AccordionContent>
             </AccordionItem>
           </Accordion>
       </div>
