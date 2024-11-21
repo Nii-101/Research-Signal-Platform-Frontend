@@ -56,22 +56,22 @@ const SignalCard = ({ signal }) => {
             </Tooltip>
           </TooltipProvider>
         </div>
-        <div className="flex items-center gap-0.5 md:gap-2">
+        <div className="flex items-center gap-1 md:gap-2">
           {signal.inLab && (
-            <div className="text-xs md:text-sm flex items-center gap-1 font-semibold bg-[#d8e6f4] px-4 rounded-[3px]">
+            <div className="text-xs md:text-sm flex items-center gap-1 font-semibold bg-[#d8e6f4] px-2 sm:px-4 rounded-[3px]">
               <TestTube className="size-3 md:size-3.5" />
               <span>In Lab</span>
             </div>
           )}
           {signal.isNew && (
-            <span className="text-xs md:text-sm bg-[#d8e6f4] font-semibold px-4 rounded-[3px]">
+            <span className="text-xs md:text-sm bg-[#d8e6f4] font-semibold px-2 sm:px-4 rounded-[3px]">
               New
             </span>
           )}
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-1  md:gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
         <Card className="p-1 py-3 text-center bg-[#dcebf9] rounded-lg">
           <p className="text-xs text-gray-500">VRP Z-Score</p>
           <p className="md:text-xl font-bold text-gray-900">
@@ -163,16 +163,16 @@ const SignalCard = ({ signal }) => {
           <AccordionItem value="item-1">
             <AccordionTrigger className="flex gap-2">Analysis</AccordionTrigger>
             <AccordionContent className="pt-6">
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="bg-blue-50 p-4 rounded-lg">
+              <div className="max-sm:w-full grid grid-cols-3 gap-4 mb-6">
+                <div className="bg-blue-50 p-1.5 sm:p-4 rounded-lg">
                   <p className="text-xs text-gray-600 mb-1">Historical Win Rate</p>
                   <p className="font-bold text-gray-900">76%</p>
                 </div>
-                <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="bg-blue-50 p-1.5 sm:p-4 rounded-lg">
                   <p className="text-xs text-gray-600 mb-1">Avg. Hold Time</p>
                   <p className="font-bold text-gray-900">14.3 days</p>
                 </div>
-                <div className="bg-blue-50 p-4 rounded-lg">
+                <div className="bg-blue-50 p-1.5 sm:p-4 rounded-lg">
                   <p className="text-xs text-gray-600 mb-1">Risk Score</p>
                   <p className="font-bold text-gray-900">Medium</p>
                 </div>
