@@ -73,8 +73,10 @@ Provides utility functions used across the application for the shadcn ui import.
 1. The chart is not as informative as can be.
 2. The application is not typesafe
 3. UI isn't appealing
+3. Limited filtering options
 
 ### Future Improvements
 1. Making the application typesafe by using typescript
 2. Improve the analysis chart by exploring different chart libraries
-3. Working on UI
+3. Working on UI to make it more intuitive, appealing and accessible
+4. Expand the filtering options so users can whittle down the cards to meet their criteria

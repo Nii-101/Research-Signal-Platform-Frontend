@@ -96,7 +96,7 @@ const SignalCard = ({ signal }) => {
         >
           <p className="text-xs text-gray-500">Confidence</p>
           <p className="md:text-xl font-bold text-gray-900">
-            {signal.confidence.toFixed(0)}%
+            {Math.round(signal.confidence)}%
           </p>
         </Card>
       </div>
